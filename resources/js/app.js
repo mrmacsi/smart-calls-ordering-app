@@ -1,3 +1,4 @@
+import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -8,6 +9,11 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+
+import Vue from 'vue'
+import Vuetify from 'vuetify'
+
+Vue.use(Vuetify);
 
 import store from "./store/index";
 import router from './router/index'

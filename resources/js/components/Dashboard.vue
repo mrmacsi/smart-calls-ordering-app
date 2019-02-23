@@ -1,14 +1,18 @@
 <template>
-    <div>
-        asdsd
-    </div>
+        <v-app light>
+            <navbar></navbar>
+            <sidebar></sidebar>
+            <contents></contents>
+        </v-app>
 </template>
 
 <script>
+    import Sidebar from "./Sidebar";
+    import Contents from "./Contents";
+    import Navbar from "./Navbar";
+
     export default {
         name: 'App',
-        mounted() {
-            console.log('Component mounted.')
-        }
+        components: {Navbar, Contents, Sidebar},
     }
 </script>
