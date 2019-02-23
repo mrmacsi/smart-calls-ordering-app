@@ -19,3 +19,5 @@ Route::get('/', function (){
     dd(url('/'));
     dd(env('APP_URL'));
 });
+
+Route::get('/', 'DashboardController@index');
