@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/webhooks/events', 'EventController@index');
+Route::get('/webhooks/answer', 'AnswerController@index');
