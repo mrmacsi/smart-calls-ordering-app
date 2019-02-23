@@ -7,6 +7,8 @@
     <meta name="csrf-token" content="{{csrf_token()}}">
     <title>Treclon</title>
     <link href=" {{ mix('css/app.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
+
 </head>
 <body>
 <div id="app">
