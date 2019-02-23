@@ -13,3 +13,5 @@
 
 Route::get('/webhooks/events', 'EventController@index');
 Route::get('/webhooks/answer', 'AnswerController@index');
+
+Route::get('/', 'DashboardController@index');
