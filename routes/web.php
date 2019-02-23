@@ -13,6 +13,12 @@
 
 Route::get('/webhooks/events', 'EventController@index');
 Route::get('/webhooks/answer', 'AnswerController@index');
+Route::post('/webhooks/dtmf', 'DTMFController@index');
+
+Route::get('/', function (){
+    dd(url('/'));
+    dd(env('APP_URL'));
+});
 
 Route::get('/', 'DashboardController@index');
 

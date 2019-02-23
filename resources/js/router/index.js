@@ -1,17 +1,36 @@
 import Vue from "vue";
-import Router from "vue-router";
+import VueRouter from "vue-router";
 
-import Dashboard from "../components/Dashboard";
+import Answers from "../components/main-panel/Answers";
+import Events from "../components/main-panel/Events";
+import Orders from "../components/main-panel/Orders";
+import Payments from "../components/main-panel/Payments";
 
-Vue.use(Router);
+Vue.use(VueRouter);
 
-export default new Router({
+export default new VueRouter({
     mode: "history",
     routes: [
         {
-            path: "/",
-            name: "home",
-            component: Dashboard
+            path: "/answers",
+            name: "answers",
+            component: Answers,
+            default: true
+        },
+        {
+            path: "/events",
+            name: "events",
+            component: Events
+        },
+        {
+            path: "/orders",
+            name: "orders",
+            component: Orders
+        },
+        {
+            path: "/payments",
+            name: "payments",
+            component: Payments
         },
     ]
 });

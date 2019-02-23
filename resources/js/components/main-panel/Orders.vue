@@ -1,16 +1,15 @@
 <template>
     <div>
-        <dashboard></dashboard>
+        Orders
     </div>
 </template>
 
 <script>
     import {mapGetters, mapMutations, mapActions} from 'vuex'
-    import Dashboard from './components/Dashboard'
 
     export default {
-        name: "App",
-        components: {Dashboard},
+        name: "Orders",
+        components: {},
         props: [],
         data() {
             return {};
