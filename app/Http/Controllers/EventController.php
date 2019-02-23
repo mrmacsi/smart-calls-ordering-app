@@ -27,4 +27,8 @@ class EventController extends Controller
             'answer_url' => ['https://developer.nexmo.com/ncco/tts.json'],
         ]);
     }
+    public function try()
+    {
+        
+    }
 }

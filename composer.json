@@ -12,7 +12,8 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
-        "nexmo/client": "^1.6"
+        "nexmo/client": "^1.6",
+        "pay-with-bolt/bolt-saas-php": "dev-master#f067037"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

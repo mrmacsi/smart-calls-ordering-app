@@ -15,3 +15,6 @@ Route::get('/webhooks/events', 'EventController@index');
 Route::get('/webhooks/answer', 'AnswerController@index');
 
 Route::get('/', 'DashboardController@index');
+
+Route::get('/notification', 'NotificationController@test');
+Route::get('/paymentSuccess', 'NotificationController@sendPaymentSuccessfulNotification');
