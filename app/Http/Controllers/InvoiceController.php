@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Filesystem\Cache;
 use QuickBooksOnline\API\DataService\DataService;
 use QuickBooksOnline\API\Core\Http\Serialization\XmlObjectSerializer;
 use QuickBooksOnline\API\Facades\Invoice;
@@ -48,7 +49,7 @@ class InvoiceController extends Controller
         ->exchangeAuthorizationCodeForToken($this->Authorization_Code, $this->real_mid);
         $dataService->updateOAuth2Token($accessTokenObj);
         $accessTokenValue = $accessTokenObj->getAccessToken();
-        $request->session()->put('access_token', $accessTokenValue);
+        Cache::forever('access_token', $accessTokenValue);
         return $accessTokenValue;
     }
 
@@ -60,7 +61,7 @@ class InvoiceController extends Controller
 
     public function createInvoice($amount,$title)
     {
-        $access_token = Session::get('access_token');
+        $access_token = Cache::get('access_token');
         $headers = [
             'Authorization: Bearer '.$access_token,
             'Content-Type: application/json',
