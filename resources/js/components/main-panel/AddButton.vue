@@ -45,8 +45,6 @@
                 this.$emit('add', data);
             }
 
-        },
-        created() {
         }
     }
 </script>

@@ -54,7 +54,6 @@
             },
             showStep(id) {
                 if (this.action.stepId === '2') {
-                    console.log(id)
                     this.$store.commit('closeSteps')
                     this.$store.commit('showStepDrinks', {field: 'step'+ (parseInt(id)+1) + 'Drinks', state: true});
                 } else {

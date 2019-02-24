@@ -28,12 +28,6 @@
                 ],
                 right: null
             }
-        },
-        methods: {
-
-        },
-        mounted() {
-            console.log('Component mounted.')
         }
     }
 </script>
