@@ -39,7 +39,7 @@ class NotificationController extends Controller
             "account" => [
                 "alt_key" => "2133212343"
             ],
-            "success_url" => "http://d12d109c.ngrok.io/paymentSuccess"
+            "success_url" => "http://a2b67e55.ngrok.io/paymentSuccess"
             ];
 
         $payment_url = $payment->paymentUrl($options);

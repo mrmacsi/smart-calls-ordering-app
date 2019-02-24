@@ -27,6 +27,7 @@ Route::get('/', 'DashboardController@index');
 Route::get('/notification', 'NotificationController@test');
 Route::get('/paymentSuccess', 'NotificationController@sendPaymentSuccessfulNotification');
 
-Route::get('/invoice', 'InvoiceController@test');
-Route::get('/invoiceCallback', 'InvoiceController@invoiceCallback');
+Route::get('/invoice', 'InvoiceController@invoiceAuth');
+Route::get('/setAccessToken', 'InvoiceController@setAccessToken');
+Route::get('/tryCreate', 'InvoiceController@test');
 
