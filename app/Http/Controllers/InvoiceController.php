@@ -12,7 +12,7 @@ class InvoiceController extends Controller
 {
     private $real_mid = "123146326761544";
     private $Authorization_Code = "L011550998938YzolNTX7rxtglWZU3XoODFkRloJRfnfnFfnIB";
-    
+
     public function invoiceAuth()
     {
         // Prep Data Services
@@ -20,11 +20,11 @@ class InvoiceController extends Controller
             'auth_mode' => 'oauth2',
             'ClientID' => "L0GJKV8ubdRriWSZpdJcaLFR3UyRLHTTbUOyfn9JVHWpqYrIw9",
             'ClientSecret' => "i5OzER7JOg8RGFn5KwGdIOfrMIDBcODomNwtGYii",
-            'RedirectURI' => "http://localhost:8000/setAccessToken",
+            'RedirectURI' => route('setToken'),
             'scope' => "com.intuit.quickbooks.accounting",
             'baseUrl' => "http://localhost:8000"
         ));
-        $OAuth2LoginHelper = $dataService->getOAuth2LoginHelper();  
+        $OAuth2LoginHelper = $dataService->getOAuth2LoginHelper();
         $authorizationCodeUrl = $OAuth2LoginHelper->getAuthorizationCodeURL();
         return redirect($authorizationCodeUrl);
     }
@@ -38,7 +38,7 @@ class InvoiceController extends Controller
             'auth_mode' => 'oauth2',
             'ClientID' => "L0GJKV8ubdRriWSZpdJcaLFR3UyRLHTTbUOyfn9JVHWpqYrIw9",
             'ClientSecret' => "i5OzER7JOg8RGFn5KwGdIOfrMIDBcODomNwtGYii",
-            'RedirectURI' => "http://localhost:8000/setAccessToken",
+            'RedirectURI' => route('setToken'),
             'scope' => "com.intuit.quickbooks.accounting",
             'baseUrl' => "http://localhost:8000"
         ));
@@ -46,7 +46,7 @@ class InvoiceController extends Controller
 
         $accessTokenObj = $OAuth2LoginHelper
         ->exchangeAuthorizationCodeForToken($this->Authorization_Code, $this->real_mid);
-        $dataService->updateOAuth2Token($accessTokenObj); 
+        $dataService->updateOAuth2Token($accessTokenObj);
         $accessTokenValue = $accessTokenObj->getAccessToken();
         $request->session()->put('access_token', $accessTokenValue);
         return $accessTokenValue;
@@ -65,7 +65,7 @@ class InvoiceController extends Controller
             'Authorization: Bearer '.$access_token,
             'Content-Type: application/json',
         ];
-    
+
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL,"https://sandbox-quickbooks.api.intuit.com/v3/company/123146326761544/invoice?minorversion=4");
         curl_setopt($ch, CURLOPT_POST, true);

@@ -30,7 +30,7 @@ Route::get('/notification', 'NotificationController@test');
 Route::get('/paymentSuccess', 'NotificationController@sendPaymentSuccessfulNotification')->name('paymentSuccess');
 
 Route::get('/invoice', 'InvoiceController@invoiceAuth');
-Route::get('/setAccessToken', 'InvoiceController@setAccessToken');
+Route::get('/setAccessToken', 'InvoiceController@setAccessToken')->name('setToken');
 Route::get('/tryCreate', 'InvoiceController@test');
 
 Route::get('/test-sms', 'SMSController@index');
