@@ -17,10 +17,11 @@ class NotificationController extends Controller
     
     public function test()
     {
-        return $this->createPayment(rand (10*10, 50*10) / 10);
+        return $this->createPayment(rand (10*10, 50*10) / 10,
+        "Burger Store Order: 1x Cheeseburger, 2x Hamburger, 1x French Fries, 1x Coke");
     }
 
-    public function createPayment($amount)
+    public function createPayment($amount,$title)
     {
         $settings = [
             "shared_key" => "1186_90441",
@@ -31,7 +32,7 @@ class NotificationController extends Controller
 
         $options = [
             "instance_key" => "9191919191",
-            "title" => "Burger Store Order: 1x Cheeseburger, 2x Hamburger, 1x French Fries, 1x Coke",
+            "title" => $title,
             "currency" => "GBP",
             "amount" => $amount,
             "alt_key" => "test1231231dd",

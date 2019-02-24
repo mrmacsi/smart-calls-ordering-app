@@ -47,33 +47,40 @@ class InvoiceController extends Controller
         $dataService->updateOAuth2Token($accessTokenObj); 
         $accessTokenValue = $accessTokenObj->getAccessToken();
         $refreshTokenValue = $accessTokenObj->getRefreshToken();
-        $dataService = DataService::Configure(array(
+        $data = array(
             'auth_mode' => 'oauth2',
             'ClientID' => "L0GJKV8ubdRriWSZpdJcaLFR3UyRLHTTbUOyfn9JVHWpqYrIw9",
             'ClientSecret' => "i5OzER7JOg8RGFn5KwGdIOfrMIDBcODomNwtGYii",
             'accessTokenKey' => $accessTokenValue,
             'refreshTokenKey' => $refreshTokenValue,
             'QBORealmID' => $this->real_mid,
-            'baseUrl' => "http://localhost:8000"
-       ));
+            'baseUrl' => "Development"
+        );
+       return $data;
+       $dataService = DataService::Configure($data);
 
-        //$dataService->throwExceptionOnError(true);
-        //Add a new Invoice
-        $theResourceObj = Invoice::create([
+        $dataService->setLogLocation("/home/mmf/hackhaton/nexmovel/log");
+        $dataService->throwExceptionOnError(true);
+        $invoiceToCreate = Invoice::create([
             "Line" => [
-            [
-                "Amount" => 100.00,
+              [
+                "Description" => "Sewing Service for Alex",
+                "Amount" => 150.00,
                 "DetailType" => "SalesItemLineDetail",
                 "SalesItemLineDetail" => [
-                "ItemRef" => [
+                  "ItemRef" => [
                     "value" => 1,
                     "name" => "Services"
+                  ]
                 ]
-                ]
+              ]
+            ],
+            "CustomerRef" => [
+                "value" => "1",
+                "name" => "Alex"
             ]
-            ]
-        ]);
-        $resultingObj = $dataService->Add($theResourceObj);
+          ]);
+        $resultingObj = $dataService->Add($invoiceToCreate);
         $error = $dataService->getLastError();
         if ($error) {
             echo "The Status code is: " . $error->getHttpStatusCode() . "\n";
