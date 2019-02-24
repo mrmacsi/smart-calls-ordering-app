@@ -31,5 +31,6 @@ Route::get('/invoice', 'InvoiceController@test');
 Route::get('/invoiceCallback', 'InvoiceController@invoiceCallback');
 
 Route::get('/test-sms', 'SMSController@index');
+Route::get('/sms', 'SMSController@sms');
 
 

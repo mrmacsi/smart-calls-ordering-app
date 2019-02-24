@@ -8,7 +8,7 @@ class SMSController extends Controller
 {
     public function index(Request $request)
     {
-        $basic  = new \Nexmo\Client\Credentials\Basic('34baa012', 'mxsjOxJJVrY06Uni');
+        $basic = new \Nexmo\Client\Credentials\Basic('34baa012', 'mxsjOxJJVrY06Uni');
         $client = new \Nexmo\Client($basic);
 
         $client->message()->send([
@@ -20,7 +20,7 @@ class SMSController extends Controller
 
     public function thanks()
     {
-        $basic  = new \Nexmo\Client\Credentials\Basic('34baa012', 'mxsjOxJJVrY06Uni');
+        $basic = new \Nexmo\Client\Credentials\Basic('34baa012', 'mxsjOxJJVrY06Uni');
         $client = new \Nexmo\Client($basic);
 
         $order = random_int(2500, 9999);
@@ -30,5 +30,10 @@ class SMSController extends Controller
             'from' => 'BurgerStore',
             'text' => "Thanks for your payment. Order number: #{$order}"
         ]);
+    }
+
+    public function sms(Request $request)
+    {
+        $this->thanks();
     }
 }
