@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Filesystem\Cache;
+use Illuminate\Support\Facades\Cache;
 use QuickBooksOnline\API\DataService\DataService;
 use QuickBooksOnline\API\Core\Http\Serialization\XmlObjectSerializer;
 use QuickBooksOnline\API\Facades\Invoice;
