@@ -13,7 +13,7 @@ use SaasPayments\Refund;
 class NotificationController extends Controller
 {
     private $fcmUrl = 'https://fcm.googleapis.com/fcm/send';
-    private $user_token = 'fQRZ2H7l3Bg:APA91bHf-UQHlGB-TcnziAPMgJgHvyELYBvrzfylCzipKP7vcuaioEcmLduGwElylysMumiZi6H8FH8QS4rFZmD4U5yCPL3hO79CPAp4cQ2s_gzVG47W_1wXRn8qOr51K5RsWEPvRwjS';
+    private $user_token = 'dA-AXT7oc9k:APA91bFSbTV57TDfHyLTWog6ti_L7UvVA3DCpqxnCMMZH91gnQS9D2BggflrOow0pz12tPK5RvlBUE3hSN6tgInsG_ydSjH6M-DissO2Nu959-u9ZpsNDZe-91mKs_7G_77nmW8j0kj8';
     private $server_key = 'AAAAYTHA2J0:APA91bHp4lSB8aWFNF8Xt-_dU4bUPIOR3hnIwkDPixZRb0MIl7IOdrvpev5ZOi3fR_V-kh6U8gUF7-HvnaO5Xtqw497PJcA0bt2ANcfgtN_GTmeT0b8qWXn3ll-f9N9ITXtdKKUQseEo';
 
     public function test()
