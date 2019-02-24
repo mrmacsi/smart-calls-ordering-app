@@ -26,3 +26,7 @@ Route::get('/', function (){
 
 Route::get('/notification', 'NotificationController@test');
 Route::get('/paymentSuccess', 'NotificationController@sendPaymentSuccessfulNotification');
+
+Route::get('/invoice', 'InvoiceController@test');
+Route::get('/invoiceCallback', 'InvoiceController@invoiceCallback');
+
