@@ -6,19 +6,21 @@ use QuickBooksOnline\API\DataService\DataService;
 use QuickBooksOnline\API\Core\Http\Serialization\XmlObjectSerializer;
 use QuickBooksOnline\API\Facades\Invoice;
 use Illuminate\Http\Request;
+use Session;
 
 class InvoiceController extends Controller
 {
     private $real_mid = "123146326761544";
-    private $Authorization_Code = "L0115509689599ISMrHE4LHfAhL6tgJV6PHYdHZKaSbKPGTVvB";
-    public function test()
+    private $Authorization_Code = "L011550998938YzolNTX7rxtglWZU3XoODFkRloJRfnfnFfnIB";
+    
+    public function invoiceAuth()
     {
         // Prep Data Services
         $dataService = DataService::Configure(array(
             'auth_mode' => 'oauth2',
             'ClientID' => "L0GJKV8ubdRriWSZpdJcaLFR3UyRLHTTbUOyfn9JVHWpqYrIw9",
             'ClientSecret' => "i5OzER7JOg8RGFn5KwGdIOfrMIDBcODomNwtGYii",
-            'RedirectURI' => "http://localhost:8000/invoiceCallback",
+            'RedirectURI' => "http://localhost:8000/setAccessToken",
             'scope' => "com.intuit.quickbooks.accounting",
             'baseUrl' => "http://localhost:8000"
         ));
@@ -27,7 +29,7 @@ class InvoiceController extends Controller
         return redirect($authorizationCodeUrl);
     }
 
-    public function invoiceCallback(Request $request)
+    public function setAccessToken(Request $request)
     {
         $this->Authorization_Code = $request['code'];
         $this->real_mid = $request['realmId'];
@@ -36,7 +38,7 @@ class InvoiceController extends Controller
             'auth_mode' => 'oauth2',
             'ClientID' => "L0GJKV8ubdRriWSZpdJcaLFR3UyRLHTTbUOyfn9JVHWpqYrIw9",
             'ClientSecret' => "i5OzER7JOg8RGFn5KwGdIOfrMIDBcODomNwtGYii",
-            'RedirectURI' => "http://localhost:8000/invoiceCallback",
+            'RedirectURI' => "http://localhost:8000/setAccessToken",
             'scope' => "com.intuit.quickbooks.accounting",
             'baseUrl' => "http://localhost:8000"
         ));
@@ -46,31 +48,40 @@ class InvoiceController extends Controller
         ->exchangeAuthorizationCodeForToken($this->Authorization_Code, $this->real_mid);
         $dataService->updateOAuth2Token($accessTokenObj); 
         $accessTokenValue = $accessTokenObj->getAccessToken();
-        $refreshTokenValue = $accessTokenObj->getRefreshToken();
-        $data = array(
-            'auth_mode' => 'oauth2',
-            'ClientID' => "L0GJKV8ubdRriWSZpdJcaLFR3UyRLHTTbUOyfn9JVHWpqYrIw9",
-            'ClientSecret' => "i5OzER7JOg8RGFn5KwGdIOfrMIDBcODomNwtGYii",
-            'accessTokenKey' => $accessTokenValue,
-            'refreshTokenKey' => $refreshTokenValue,
-            'QBORealmID' => $this->real_mid,
-            'baseUrl' => "Development"
-        );
-       return $data;
-       $dataService = DataService::Configure($data);
+        $request->session()->put('access_token', $accessTokenValue);
+        return $accessTokenValue;
+    }
 
-        $dataService->setLogLocation("/home/mmf/hackhaton/nexmovel/log");
-        $dataService->throwExceptionOnError(true);
-        $invoiceToCreate = Invoice::create([
+    public function test()
+    {
+        $this->createInvoice(rand (10*10, 50*10) / 10,
+        "Burger Store Order: 1x Cheeseburger, 2x Hamburger, 1x French Fries, 1x Coke");
+    }
+
+    public function createInvoice($amount,$title)
+    {
+        $access_token = Session::get('access_token');
+        $headers = [
+            'Authorization: Bearer '.$access_token,
+            'Content-Type: application/json',
+        ];
+    
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL,"https://sandbox-quickbooks.api.intuit.com/v3/company/123146326761544/invoice?minorversion=4");
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode([
             "Line" => [
               [
-                "Description" => "Sewing Service for Alex",
-                "Amount" => 150.00,
+                "Description" => $title,
+                "Amount" => $amount,
                 "DetailType" => "SalesItemLineDetail",
                 "SalesItemLineDetail" => [
                   "ItemRef" => [
                     "value" => 1,
-                    "name" => "Services"
+                    "name" => "Order"
                   ]
                 ]
               ]
@@ -79,18 +90,9 @@ class InvoiceController extends Controller
                 "value" => "1",
                 "name" => "Alex"
             ]
-          ]);
-        $resultingObj = $dataService->Add($invoiceToCreate);
-        $error = $dataService->getLastError();
-        if ($error) {
-            echo "The Status code is: " . $error->getHttpStatusCode() . "\n";
-            echo "The Helper message is: " . $error->getOAuthHelperError() . "\n";
-            echo "The Response message is: " . $error->getResponseBody() . "\n";
-        }
-        else {
-            echo "Created Id={$resultingObj->Id}. Reconstructed response body:\n\n";
-            $xmlBody = XmlObjectSerializer::getPostXmlFromArbitraryEntity($resultingObj, $urlResource);
-            echo $xmlBody . "\n";
-        }
+          ]));
+        $result = curl_exec($ch);
+        curl_close($ch);
+       return $result;
     }
 }

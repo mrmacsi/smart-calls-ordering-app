@@ -100,6 +100,8 @@ class DTMFController extends Controller
                 $title = implode(', ', $descriptions);
                 $controller->createPayment($total, $title);
 
+                $invoiceController = new InvoiceController();
+                $invoiceController->createInvoice($total, $title);
                 $ncco = [
                     [
                         'action' => 'talk',

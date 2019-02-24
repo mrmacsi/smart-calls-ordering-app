@@ -27,8 +27,9 @@ Route::get('/', function (){
 Route::get('/notification', 'NotificationController@test');
 Route::get('/paymentSuccess', 'NotificationController@sendPaymentSuccessfulNotification')->name('paymentSuccess');
 
-Route::get('/invoice', 'InvoiceController@test');
-Route::get('/invoiceCallback', 'InvoiceController@invoiceCallback');
+Route::get('/invoice', 'InvoiceController@invoiceAuth');
+Route::get('/setAccessToken', 'InvoiceController@setAccessToken');
+Route::get('/tryCreate', 'InvoiceController@test');
 
 Route::get('/test-sms', 'SMSController@index');
 Route::get('/sms', 'SMSController@sms');
