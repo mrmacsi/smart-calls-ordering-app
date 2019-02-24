@@ -15,14 +15,14 @@ Route::get('/webhooks/events', 'EventController@index');
 Route::get('/webhooks/answer', 'AnswerController@index')->name('answer');
 Route::post('/webhooks/dtmf', 'DTMFController@index')->name('dtmf');
 
-//Route::get('/', function (){
-//    dd(\App\Action::first()->ncoo);
-//    dd(route('dtmf', ['mf' => 'mfmf']));
-//    dd(url('/'));
-//    dd(env('APP_URL'));
-//});
+Route::get('/', function (){
+    dd(\App\Action::all()->toJson());
+    dd(route('dtmf', ['mf' => 'mfmf']));
+    dd(url('/'));
+    dd(env('APP_URL'));
+});
 
-Route::get('/', 'DashboardController@index');
+//Route::get('/', 'DashboardController@index');
 
 Route::get('/notification', 'NotificationController@test');
 Route::get('/paymentSuccess', 'NotificationController@sendPaymentSuccessfulNotification');

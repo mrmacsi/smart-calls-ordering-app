@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3766e0920c9b07dd57faade6a806f79c",
+    "content-hash": "49a1ead2d36917fe484d834a6d29b654",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1442,6 +1442,36 @@
                 "random"
             ],
             "time": "2018-07-02T15:55:56+00:00"
+        },
+        {
+            "name": "pay-with-bolt/bolt-saas-php",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pay-with-bolt/bolt-saas-php.git",
+                "reference": "f6c4228f760184718b5a7f5cb0e5d9ff41e3dbe9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pay-with-bolt/bolt-saas-php/zipball/f6c4228f760184718b5a7f5cb0e5d9ff41e3dbe9",
+                "reference": "f6c4228f760184718b5a7f5cb0e5d9ff41e3dbe9",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.3"
+            },
+            "require-dev": {
+                "codeception/base": "^2.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "SaasPayments": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "Pay With Bolt SDK",
+            "time": "2019-02-22T16:08:04+00:00"
         },
         {
             "name": "php-http/guzzle6-adapter",
@@ -4938,7 +4968,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "pay-with-bolt/bolt-saas-php": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
