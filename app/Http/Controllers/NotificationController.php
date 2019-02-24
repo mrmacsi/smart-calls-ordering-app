@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use function GuzzleHttp\json_encode;
+use Illuminate\Support\Facades\Log;
 use SaasPayments\SaasPayments;
 use SaasPayments\Setup;
 use SaasPayments\Payment;
@@ -14,7 +15,7 @@ class NotificationController extends Controller
     private $fcmUrl = 'https://fcm.googleapis.com/fcm/send';
     private $user_token = 'fQRZ2H7l3Bg:APA91bHf-UQHlGB-TcnziAPMgJgHvyELYBvrzfylCzipKP7vcuaioEcmLduGwElylysMumiZi6H8FH8QS4rFZmD4U5yCPL3hO79CPAp4cQ2s_gzVG47W_1wXRn8qOr51K5RsWEPvRwjS';
     private $server_key = 'AAAAYTHA2J0:APA91bHp4lSB8aWFNF8Xt-_dU4bUPIOR3hnIwkDPixZRb0MIl7IOdrvpev5ZOi3fR_V-kh6U8gUF7-HvnaO5Xtqw497PJcA0bt2ANcfgtN_GTmeT0b8qWXn3ll-f9N9ITXtdKKUQseEo';
-    
+
     public function test()
     {
         return $this->createPayment(rand (10*10, 50*10) / 10,
@@ -39,7 +40,7 @@ class NotificationController extends Controller
             "account" => [
                 "alt_key" => "2133212343"
             ],
-            "success_url" => "http://a2b67e55.ngrok.io/paymentSuccess"
+            "success_url" => route('paymentSuccess')
             ];
 
         $payment_url = $payment->paymentUrl($options);
@@ -53,18 +54,18 @@ class NotificationController extends Controller
             'PAYMENT_URL' => $url,
             'sound' => true,
         ];
-    
+
         $fcmNotification = [
             'to'        => $this->user_token, //single token
             'notification' => $notification,
             'data' => ['PAYMENT_URL' => $url]
         ];
-    
+
         $headers = [
             'Authorization: key='.$this->server_key,
             'Content-Type: application/json'
         ];
-    
+
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL,$this->fcmUrl);
         curl_setopt($ch, CURLOPT_POST, true);
@@ -74,7 +75,7 @@ class NotificationController extends Controller
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fcmNotification));
         $result = curl_exec($ch);
         curl_close($ch);
-    
+
         return $result;
     }
 
@@ -84,18 +85,18 @@ class NotificationController extends Controller
             'STATUS' => "DONE",
             'sound' => true,
         ];
-    
+
         $fcmNotification = [
             'to'        => $this->user_token, //single token
             'notification' => $notification,
             'data' => ['STATUS' => "DONE"]
         ];
-    
+
         $headers = [
             'Authorization: key='.$this->server_key,
             'Content-Type: application/json'
         ];
-    
+
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL,$this->fcmUrl);
         curl_setopt($ch, CURLOPT_POST, true);
@@ -105,7 +106,10 @@ class NotificationController extends Controller
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fcmNotification));
         $result = curl_exec($ch);
         curl_close($ch);
-    
+
+        $c = new SMSController();
+        $c->thanks();
+
         return $result;
     }
 }

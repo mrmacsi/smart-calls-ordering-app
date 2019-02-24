@@ -8,6 +8,9 @@ class Action extends Model
 {
     protected $fillable = ['id', 'type', 'title', 'text', 'next', 'extra'];
     public $incrementing = false;
+    protected $casts = [
+        'extra' => 'array',
+    ];
 
     public function getNcooAttribute()
     {
@@ -34,6 +37,7 @@ class Action extends Model
                 ],
                 [
                     'action' => 'input',
+                    'maxDigits' => 1,
                     'eventUrl' => [
                         route('dtmf', ['action' => $this->id])
                     ]
