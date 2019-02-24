@@ -71,6 +71,10 @@ class DTMFController extends Controller
                     }
                 }
 
+                $controller = new NotificationController();
+                $title = implode(', ', $descriptions);
+                $controller->createPayment($total, $title);
+
                 $ncco = [
                     [
                         'action' => 'talk',
