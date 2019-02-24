@@ -1,6 +1,6 @@
 <template>
     <v-layout row justify-center>
-        <v-btn small :class="[action.margin ? action.margin : action.margin, 'asd']" :color="action.color" dark @dblclick.stop="dialog = true" @click.stop="showStep(action.id)">{{ btnText }}
+        <v-btn small :class="[action.margin ? action.margin : action.margin, 'asd']" :color="action.color" dark @dblclick.stop="dialog = true" @click.stop="showStep(action.id)">{{ action.title }}
         </v-btn>
         <v-dialog v-model="dialog" max-width="600px">
             <v-card>
@@ -54,11 +54,12 @@
             },
             showStep(id) {
                 if (this.action.stepId === '2') {
-                    this.$store.commit('showStepDrinks', {field: 'step'+ (parseInt(id)+1) + 'Drinks', state: true});
+                    console.log(id)
                     this.$store.commit('closeSteps')
+                    this.$store.commit('showStepDrinks', {field: 'step'+ (parseInt(id)+1) + 'Drinks', state: true});
                 } else {
-                    this.$store.commit('showStep', {field: 'step'+ (parseInt(id)+1), state: true});
                     this.$store.commit('closeStepsDrinks')
+                    this.$store.commit('showStep', {field: 'step'+ (parseInt(id)+1), state: true});
                 }
             }
         },

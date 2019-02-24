@@ -2,6 +2,7 @@
     <v-overflow-btn
             :items="dropdown_font"
             label="Add +"
+            flat
             @change="setAction"
             v-model="selectAction"
     ></v-overflow-btn>
@@ -39,8 +40,8 @@
                 }
             },
             setAction() {
-                this.setColor()
-                const data = {value: this.selectAction, color: this.color}
+                this.setColor();
+                const data = {value: this.selectAction, color: this.color};
                 this.$emit('add', data);
             }
 

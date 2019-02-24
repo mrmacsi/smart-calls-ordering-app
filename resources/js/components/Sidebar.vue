@@ -1,12 +1,12 @@
 <template>
-    <v-navigation-drawer permanent clipped app dark class="primary lighten-3 drawer-margin-top">
+    <v-navigation-drawer app dark class="drawer-margin-top">
         <v-list>
             <v-list-tile v-for="item in items" :key="item.title" :to="{path: item.path}">
                 <v-list-tile-action>
                     <v-icon>{{ item.icon }}</v-icon>
                 </v-list-tile-action>
                 <v-list-tile-content>
-                    <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+                    <v-list-tile-title class="text-dark font-weight-bold lighten-3">{{ item.title }}</v-list-tile-title>
                 </v-list-tile-content>
             </v-list-tile>
         </v-list>
@@ -41,5 +41,6 @@
 <style scoped>
     .drawer-margin-top{
         margin-top: 64px !important;
+        background-color: #b7b4b4;
     }
 </style>

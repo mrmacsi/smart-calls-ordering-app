@@ -1,6 +1,6 @@
 <template>
     <v-container grid-list-md text-xs-center row>
-        <v-layout row wrap width="200px">
+        <v-layout row wrap width="200px" style="height: 80vh;">
             <v-flex xs2 class="border-right step1">
                 <action v-for="action in step1"
                         :action="action"></action>
@@ -186,8 +186,8 @@
                         "id": "4",
                         "type": "talk",
                         "color": "success",
-                        "title": "Water",
-                        "text": "Water",
+                        "title": "Beer",
+                        "text": "Beer",
                         "next": "",
                         "extra": null,
                         "created_at": "2019-02-24 07:42:44",

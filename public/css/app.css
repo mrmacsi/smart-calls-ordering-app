@@ -10683,3 +10683,8 @@ button {
   margin-top: 170px !important;
 }
 
+html {
+  min-height: 100%;
+  position: relative;
+}
+

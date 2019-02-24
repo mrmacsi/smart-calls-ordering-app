@@ -1,7 +1,7 @@
 <template>
     <v-toolbar>
         <v-icon>perm_identity</v-icon>
-        <v-toolbar-title><a href="/">My Profile</a></v-toolbar-title>
+        <v-toolbar-title><a href="/">Smart Calls</a></v-toolbar-title>
         <v-spacer></v-spacer>
             <v-btn color="success">Talk</v-btn>
             <v-btn color="error">Question</v-btn>
