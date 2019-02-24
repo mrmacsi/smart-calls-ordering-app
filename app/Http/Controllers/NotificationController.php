@@ -40,10 +40,8 @@ class NotificationController extends Controller
             "account" => [
                 "alt_key" => "2133212343"
             ],
-            "success_url" => env('SERVER_URL') . "/paymentSuccess"
+            "success_url" => route('paymentSuccess')
             ];
-
-        Log::debug($options);
 
         $payment_url = $payment->paymentUrl($options);
 
@@ -108,8 +106,6 @@ class NotificationController extends Controller
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fcmNotification));
         $result = curl_exec($ch);
         curl_close($ch);
-
-        Log::debug('buraya kadar');
 
         $c = new SMSController();
         $c->thanks();
