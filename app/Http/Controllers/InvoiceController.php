@@ -57,7 +57,7 @@ class InvoiceController extends Controller
             'baseUrl' => "http://localhost:8000"
        ));
 
-       $dataService->throwExceptionOnError(true);
+        //$dataService->throwExceptionOnError(true);
         //Add a new Invoice
         $theResourceObj = Invoice::create([
             "Line" => [
@@ -71,18 +71,6 @@ class InvoiceController extends Controller
                 ]
                 ]
             ]
-            ],
-            "CustomerRef"=> [
-                "value"=> 1
-            ],
-            "BillEmail" => [
-                "Address" => "Familiystore@intuit.com"
-            ],
-            "BillEmailCc" => [
-                "Address" => "a@intuit.com"
-            ],
-            "BillEmailBcc" => [
-                "Address" => "v@intuit.com"
             ]
         ]);
         $resultingObj = $dataService->Add($theResourceObj);

@@ -31,12 +31,13 @@ class NotificationController extends Controller
 
         $options = [
             "instance_key" => "9191919191",
-            "title" => "macit kebap ltd",
-            "channelTitle" => "macit kebap ltd",
+            "title" => "Burger Store Order: 1x Cheeseburger, 2x Hamburger, 1x French Fries, 1x Coke",
             "currency" => "GBP",
-            "amount" => $amount, 
+            "amount" => $amount,
             "alt_key" => "test1231231dd",
-            "account" => [],
+            "account" => [
+                "alt_key" => "2133212343"
+            ],
             "success_url" => "http://d12d109c.ngrok.io/paymentSuccess"
             ];
 
