@@ -20,22 +20,15 @@ class ActionSeeder extends Seeder
                 'text' => 'Welcome to Burger Store',
                 'next' => '2',
             ],
-//            [
-//                'id' => '2',
-//                'type' => 'input',
-//                'title' => 'Burger',
-//                'text' => 'Please select and option',
-//                'next' => '3',
-//            ],
             [
                 'id' => '2',
                 'type' => 'question',
                 'title' => 'Which?',
-                'text' => 'Here is our menu. To order burgers press 1. To order fries press 2 and to order drinks please press 3.',
+                'text' => 'Here is our menu. To order burgers press 1. To order fries press 2. To order drinks please press 3.',
                 'extra' => [
                     '1' => '4', // burgers
-//                    '2' => '5',
-//                    '3' => '6',
+                    '2' => '9', // fries
+                    '3' => '12', // fries
                 ],
                 'next' => '',
             ],
@@ -43,9 +36,10 @@ class ActionSeeder extends Seeder
                 'id' => '4',
                 'type' => 'question',
                 'title' => 'Burger Type',
-                'text' => 'You selected burgers. For hamburgers press 1, for cheeseburgers press 2',
+                'text' => 'You selected burgers. For hamburgers press 1, for cheeseburgers please press 2',
                 'extra' => [
-                    '1' => '5'
+                    '1' => '5', // ham
+                    '2' => '8' // cheese
                 ],
                 'next' => '',
             ],
@@ -53,18 +47,17 @@ class ActionSeeder extends Seeder
                 'id' => '5',
                 'type' => 'input',
                 'title' => 'Hamburgers',
-                'text' => 'How many burgers would you like to buy?',
+                'text' => 'How many hamburgers would you like to buy?',
                 'next' => '6',
             ],
             [
                 'id' => '6',
                 'type' => 'question',
                 'title' => 'proceed or pay',
-                'text' => "That's great. if you'd like to add more items press 1 or to proceed to payment press 2",
+                'text' => "That's great. if you'd like to add more items press 1 or to proceed to payment please press 2",
                 'extra' => [
                     '1' => '2', // menu
-                    '2' => '7',
-//                    '3' => '6',
+                    '2' => '7', // payment
                 ],
                 'next' => '',
             ],
@@ -75,8 +68,63 @@ class ActionSeeder extends Seeder
                 'text' => '',
                 'next' => '',
             ],
-
-
+            [
+                'id' => '8',
+                'type' => 'input',
+                'title' => 'Cheeseburgers',
+                'text' => 'How many cheeseburgers would you like to buy?',
+                'next' => '6',
+            ],
+            [
+                'id' => '9',
+                'type' => 'question',
+                'title' => 'Fries Type',
+                'text' => 'You selected Fries. For small fries press 1, for large fries please press 2',
+                'extra' => [
+                    '1' => '10', // small
+                    '2' => '11' // large
+                ],
+                'next' => '',
+            ],
+            [
+                'id' => '10',
+                'type' => 'input',
+                'title' => 'Small Fries',
+                'text' => 'How many small fries would you like to buy?',
+                'next' => '6',
+            ],
+            [
+                'id' => '11',
+                'type' => 'input',
+                'title' => 'Large Fries',
+                'text' => 'How many large fries would you like to buy?',
+                'next' => '6',
+            ],
+            [
+                'id' => '12',
+                'type' => 'question',
+                'title' => 'Drink Type',
+                'text' => 'You selected Drinks. For coke press 1, for beer please press 2',
+                'extra' => [
+                    '1' => '13', // coke
+                    '2' => '14' // beer
+                ],
+                'next' => '',
+            ],
+            [
+                'id' => '13',
+                'type' => 'input',
+                'title' => 'Coke',
+                'text' => 'How many cans of coke would you like to buy?',
+                'next' => '6',
+            ],
+            [
+                'id' => '14',
+                'type' => 'input',
+                'title' => 'Beer',
+                'text' => 'How many bottles of beer would you like to buy?',
+                'next' => '6',
+            ],
         ];
 
         foreach ($actions as $action) {

@@ -63,8 +63,33 @@ class DTMFController extends Controller
                 $total = 0;
 
                 foreach ($answers as $answer) {
-                    if ($answer->action_id == 5) {
+                    if ($answer->action_id == 5) { // hamburger
                         $price = 5.95;
+                        $description = $answer->title . ' x ' . $answer->dtmf;
+                        $descriptions[] = $description;
+                        $total += $price * $answer->dtmf;
+                    } else if ($answer->action_id == 8) { // cheeseburger
+                        $price = 6.95;
+                        $description = $answer->title . ' x ' . $answer->dtmf;
+                        $descriptions[] = $description;
+                        $total += $price * $answer->dtmf;
+                    }else if ($answer->action_id == 10) { // small fries
+                        $price = 2.5;
+                        $description = $answer->title . ' x ' . $answer->dtmf;
+                        $descriptions[] = $description;
+                        $total += $price * $answer->dtmf;
+                    }else if ($answer->action_id == 11) { // large fries
+                        $price = 3.5;
+                        $description = $answer->title . ' x ' . $answer->dtmf;
+                        $descriptions[] = $description;
+                        $total += $price * $answer->dtmf;
+                    }else if ($answer->action_id == 13) { // coke
+                        $price = 1.5;
+                        $description = $answer->title . ' x ' . $answer->dtmf;
+                        $descriptions[] = $description;
+                        $total += $price * $answer->dtmf;
+                    }else if ($answer->action_id == 14) { // beer
+                        $price = 4;
                         $description = $answer->title . ' x ' . $answer->dtmf;
                         $descriptions[] = $description;
                         $total += $price * $answer->dtmf;
