@@ -1,38 +1,26 @@
 <template>
     <v-toolbar>
         <v-icon>perm_identity</v-icon>
-        <v-toolbar-title>My Profile</v-toolbar-title>
+        <v-toolbar-title><a href="/">My Profile</a></v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-toolbar-items justify-space-around class="hidden-sm-and-down">
-            <v-btn flat>Link One</v-btn>
-            <v-btn flat>Link Two</v-btn>
-            <v-btn flat>Link Three</v-btn>
-        </v-toolbar-items>
+            <v-btn color="success">Talk</v-btn>
+            <v-btn color="error">Question</v-btn>
+            <v-btn color="primary">Input</v-btn>
+            <v-btn style="background-color: gray" >Payment</v-btn>
+            <v-btn style="background-color: darkslategrey" >SMS</v-btn>
     </v-toolbar>
 </template>
 
 <script>
-    import {mapGetters, mapMutations, mapActions} from 'vuex'
-
     export default {
         name: "Navbar",
-        components: {},
-        props: [],
-        data() {
-            return {};
-        },
-        computed: {
-            ...mapGetters([]),
-        },
-        methods: {
-            ...mapMutations([]),
-            ...mapActions([]),
-        },
-        created() {
-        }
     }
 </script>
 
 <style scoped lang="scss">
-
+.navbar-buttons {
+    display: flex;
+    flex: 1;
+    justify-content: space-evenly;
+}
 </style>

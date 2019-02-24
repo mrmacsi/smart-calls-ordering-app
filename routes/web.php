@@ -15,6 +15,8 @@ Route::get('/webhooks/events', 'EventController@index');
 Route::get('/webhooks/answer', 'AnswerController@index')->name('answer');
 Route::post('/webhooks/dtmf', 'DTMFController@index')->name('dtmf');
 
+
+
 Route::get('/', function (){
     dd(\App\Action::all()->toJson());
     dd(route('dtmf', ['mf' => 'mfmf']));

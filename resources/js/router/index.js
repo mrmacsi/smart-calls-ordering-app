@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
-import Answers from "../components/main-panel/Answers";
+import CreateVoiceChat from "../components/main-panel/CreateVoiceChat";
 import Events from "../components/main-panel/Events";
 import Orders from "../components/main-panel/Orders";
 import Payments from "../components/main-panel/Payments";
@@ -12,9 +12,9 @@ export default new VueRouter({
     mode: "history",
     routes: [
         {
-            path: "/answers",
-            name: "answers",
-            component: Answers,
+            path: "/create-voice-chat",
+            name: "CreateVoiceChat",
+            component: CreateVoiceChat,
             default: true
         },
         {

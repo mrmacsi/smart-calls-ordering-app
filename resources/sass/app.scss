@@ -1,4 +1,3 @@
-
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
@@ -8,7 +7,32 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+a {
+  text-decoration: none !important;
+}
+
+.v-toolbar {
+  box-shadow: none !important;
+}
+
+button {
+  box-shadow: none !important;
+}
+
+.one {
+  margin-top: 48px !important;
+}
+
+.two {
+  margin-top: 89px !important;
+
+}
+
+.three {
+  margin-top: 130px !important;
+
+}
+.four {
+  margin-top: 170px !important;
+
 }

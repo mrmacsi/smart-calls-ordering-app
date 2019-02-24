@@ -1,13 +1,13 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import MainStore from "./modules/MainStore";
+import Action from "./modules/Action";
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
   strict: true,
   modules: {
-    MainStore
+    Action
   }
 });
 

@@ -5,25 +5,11 @@
 </template>
 
 <script>
-    import {mapGetters, mapMutations, mapActions} from 'vuex'
     import Dashboard from './components/Dashboard'
 
     export default {
         name: "App",
         components: {Dashboard},
-        props: [],
-        data() {
-            return {};
-        },
-        computed: {
-            ...mapGetters([]),
-        },
-        methods: {
-            ...mapMutations([]),
-            ...mapActions([]),
-        },
-        created() {
-        }
     }
 </script>
 

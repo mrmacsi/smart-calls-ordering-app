@@ -1,7 +1,7 @@
 <template>
-    <v-navigation-drawer permanent clipped enable-resize-watcher app dark class="primary lighten-3">
+    <v-navigation-drawer permanent clipped app dark class="primary lighten-3 drawer-margin-top">
         <v-list>
-            <v-list-tile v-for="item in items" :key="title" :to="{path: item.path}">
+            <v-list-tile v-for="item in items" :key="item.title" :to="{path: item.path}">
                 <v-list-tile-action>
                     <v-icon>{{ item.icon }}</v-icon>
                 </v-list-tile-action>
@@ -16,16 +16,15 @@
 <script>
     export default {
         name: 'Sidebar',
-
         data() {
             return {
                 drawer: true,
                 clipped: false,
                 items: [
-                    { title: 'Answers', icon: 'dashboard', path:'/answers'},
-                    { title: 'Events', icon: 'question_answer', path:'/events' },
-                    { title: 'Orders', icon: 'question_answer', path:'/orders' } ,
-                    { title: 'Payments', icon: 'question_answer', path:'/payments'}
+                    { title: 'Create Voice Chat', icon: 'chat', path:'/create-voice-chat'},
+                    { title: 'Events', icon: 'event', path:'/events' },
+                    { title: 'Orders', icon: 'shopping_cart', path:'/orders' } ,
+                    { title: 'Payments', icon: 'payment', path:'/payments'}
                 ],
                 right: null
             }
@@ -38,3 +37,9 @@
         }
     }
 </script>
+
+<style scoped>
+    .drawer-margin-top{
+        margin-top: 64px !important;
+    }
+</style>
